@@ -82,7 +82,7 @@ void    truncate(std::string string)
 void    searchContact(Contact phonebook[8], int num_contacts)
 {
     int index;
-    std::string str;
+    char str[3];
     std::cout << '|';
     std::cout << std::setw(10) << "Index";
     std::cout << "|";
@@ -106,7 +106,7 @@ void    searchContact(Contact phonebook[8], int num_contacts)
     }
     std::cout << "Pick an index:" << std::endl;
     std::cin >> str;
-    index = std::stoi(str, nullptr, 10);
+    index = str[0] - '0';
     if (0 < index && index < (num_contacts + 1))
     {
         index -= 1;

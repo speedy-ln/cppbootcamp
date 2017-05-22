@@ -23,8 +23,8 @@ public:
     std::string    email;
     std::string    phone_number;
     std::string    birthday;
-    std::string    favourite_meal;
-    std::string    underwear_colour;
+    std::string    favorite_meal;
+    std::string    underwear_color;
     std::string    darkest_secret;
     int     set;
 };

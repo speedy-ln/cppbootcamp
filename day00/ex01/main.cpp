@@ -12,30 +12,118 @@
 
 #include "phonebook.hpp"
 
-void addContact(Contact *contact)
+void    addContact(Contact *contact)
 {
-    std::cout << "What's your first name?" << std::endl;
-    std::getline(std::cin, contact->first_name);
-    std::cout << "What's your last name?" << std::endl;
-    std::getline(std::cin, contact->last_name);
-    std::cout << "What's your nickname?" << std::endl;
-    std::getline(std::cin, contact->nickname);
-    std::cout << "What's your login?" << std::endl;
-    std::getline(std::cin, contact->login);
-    std::cout << "What's your postal_address?" << std::endl;
-    std::getline(std::cin, contact->postal_address);
-    std::cout << "What's your email?" << std::endl;
-    std::getline(std::cin, contact->email);
-    std::cout << "What's your phone_number?" << std::endl;
-    std::getline(std::cin, contact->phone_number);
-    std::cout << "What's your birthday?" << std::endl;
-    std::getline(std::cin, contact->birthday);
-    std::cout << "What's your favourite_meal?" << std::endl;
-    std::getline(std::cin, contact->favourite_meal);
-    std::cout << "What's your underwear_colour?" << std::endl;
-    std::getline(std::cin, contact->underwear_colour);
-    std::cout << "What's your darkest_secret?" << std::endl;
-    std::getline(std::cin, contact->darkest_secret);
+    do {
+        std::cout << "What's your first name?" << std::endl;
+        std::getline(std::cin, contact->first_name);
+    } while(contact->first_name.empty());
+
+    do {
+        std::cout << "What's your last name?" << std::endl;
+        std::getline(std::cin, contact->last_name);
+    } while(contact->last_name.empty());
+
+    do {
+        std::cout << "What's your nickname?" << std::endl;
+        std::getline(std::cin, contact->nickname);
+    } while(contact->nickname.empty());
+
+    do {
+        std::cout << "What's your login?" << std::endl;
+        std::getline(std::cin, contact->login);
+    } while(contact->login.empty());
+
+    do {
+        std::cout << "What's your postal_address?" << std::endl;
+        std::getline(std::cin, contact->postal_address);
+    } while(contact->postal_address.empty());
+
+    do {
+        std::cout << "What's your email?" << std::endl;
+        std::getline(std::cin, contact->email);
+    } while(contact->email.empty());
+
+    do {
+        std::cout << "What's your phone_number?" << std::endl;
+        std::getline(std::cin, contact->phone_number);
+    } while(contact->phone_number.empty());
+
+    do {
+        std::cout << "What's your birthday?" << std::endl;
+        std::getline(std::cin, contact->birthday);
+    } while(contact->birthday.empty());
+
+    do {
+        std::cout << "What's your favorite_meal?" << std::endl;
+        std::getline(std::cin, contact->favorite_meal);
+    } while(contact->favorite_meal.empty());
+
+    do {
+        std::cout << "What's your underwear_color?" << std::endl;
+        std::getline(std::cin, contact->underwear_color);
+    } while(contact->underwear_color.empty());
+
+    do {
+        std::cout << "What's your darkest_secret?" << std::endl;
+        std::getline(std::cin, contact->darkest_secret);
+    } while(contact->darkest_secret.empty());
+
+}
+
+void    truncate(std::string string)
+{
+    if (string.length() > 10)
+        std::cout << string.substr(0, 9) << '.';
+    else
+        std::cout << std::setw(10) << string;
+}
+
+void    searchContact(Contact phonebook[8], int num_contacts)
+{
+    int index;
+    std::string str;
+    std::cout << '|';
+    std::cout << std::setw(10) << "Index";
+    std::cout << "|";
+    std::cout << std::setw(10) << "First name";
+    std::cout << "|";
+    std::cout << std::setw(10) << "Last name";
+    std::cout << "|";
+    std::cout << std::setw(10) << "Nickname";
+    std::cout << "|" << std::endl;
+    for (int i = 0; i < num_contacts; ++i)
+    {
+        std::cout << '|';
+        std::cout << std::setw(10) << (i+1);
+        std::cout << '|';
+        truncate(phonebook[i].first_name);
+        std::cout << '|';
+        truncate(phonebook[i].last_name);
+        std::cout << '|';
+        truncate(phonebook[i].nickname);
+        std::cout << "|" << std::endl;
+    }
+    std::cout << "Pick an index:" << std::endl;
+    std::cin >> str;
+    index = std::stoi(str, nullptr, 10);
+    if (0 < index && index < (num_contacts + 1))
+    {
+        index -= 1;
+        std::cout << "First name: " << phonebook[index].first_name << std::endl;
+        std::cout << "Last name: " << phonebook[index].last_name << std::endl;
+        std::cout << "Nickname: " << phonebook[index].nickname << std::endl;
+        std::cout << "Login: " << phonebook[index].login << std::endl;
+        std::cout << "Postal Address: " << phonebook[index].postal_address << std::endl;
+        std::cout << "Email Address: " << phonebook[index].email << std::endl;
+        std::cout << "Birthday: " << phonebook[index].birthday << std::endl;
+        std::cout << "Phone number: " << phonebook[index].phone_number << std::endl;
+        std::cout << "Favorite Meal: " << phonebook[index].favorite_meal << std::endl;
+        std::cout << "Underwear Color: " << phonebook[index].underwear_color << std::endl;
+        std::cout << "Darkest Secret: " << phonebook[index].darkest_secret << std::endl;
+    }
+    else
+        std::cout << "Invalid index." << std::endl;
 }
 
 int main ()
@@ -43,7 +131,7 @@ int main ()
     std::string  cmd;
     Contact     phonebook[8];
     Contact     contact;
-    int         i = 0;
+    int         num_contacts = 0;
     std::cout << "Enter a command..." << std::endl;
     while (1)
     {
@@ -55,8 +143,11 @@ int main ()
         {
             for (int j = 0; j < 8; ++j)
             {
-                if (i == 8)
+                if (num_contacts == 8)
+                {
                     std::cout << "Phonebook is full" << std::endl;
+                    break;
+                }
                 else
                 {
                     if (phonebook[j].set == 0)
@@ -64,7 +155,7 @@ int main ()
                         contact.set = 1;
                         addContact(&contact);
                         phonebook[j] = contact;
-                        i++;
+                        num_contacts++;
                         break;
                     }
                 }
@@ -72,7 +163,7 @@ int main ()
         }
         else if (cmd == "SEARCH")
         {
-
+            searchContact(phonebook, num_contacts);
         }
     }
     return (0);

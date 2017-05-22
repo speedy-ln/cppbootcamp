@@ -17,10 +17,12 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 #include "Contact.cpp"
 
 class Contact;
 
-void addContact(Contact *contact);
+void    addContact(Contact *contact);
+void    searchContact(Contact phonebook[8]);
 
 #endif

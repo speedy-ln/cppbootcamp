@@ -21,6 +21,6 @@
 
 class Contact;
 
-Contact addContact(Contact *contact);
+void addContact(Contact *contact);
 
 #endif

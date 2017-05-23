@@ -14,7 +14,7 @@ std::string randomName()
     names[7] = "Retrogade";
     names[8] = "Bra Zab";
     names[9] = "Sfiso";
-    return (names[(time(NULL) % 9)]);
+    return (names[(rand() % 9)]);
 }
 
 void        randomChump()

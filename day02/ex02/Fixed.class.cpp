@@ -63,14 +63,10 @@ bool Fixed::operator<(Fixed const &obj) const { return (rawBits < obj.rawBits); 
 bool Fixed::operator<=(Fixed const &obj) const { return (rawBits <= obj.rawBits); }
 bool Fixed::operator>(Fixed const &obj) const { return (rawBits > obj.rawBits); }
 bool Fixed::operator>=(Fixed const &obj) const { return (rawBits >= obj.rawBits); }
-Fixed& Fixed::operator*(Fixed const &obj) const { return (*new Fixed(this->toFloat() * obj.toFloat())); }
-Fixed& Fixed::operator/(Fixed const &obj) const { return (*new Fixed(this->toFloat() / obj.toFloat())); }
-Fixed& Fixed::operator+(Fixed const &obj) const
-{
-    Fixed   *sum = new Fixed();
-    sum->rawBits = rawBits + obj.rawBits;
-    return (*sum);
-}
+Fixed& Fixed::operator*(Fixed const &obj) const { return (*new Fixed(toFloat() * obj.toFloat())); }
+Fixed& Fixed::operator/(Fixed const &obj) const { return (*new Fixed(toFloat() / obj.toFloat())); }
+Fixed& Fixed::operator+(Fixed const &obj) const { return (*new Fixed(rawBits + obj.rawBits)); }
+Fixed& Fixed::operator-(Fixed const &obj) const { return (*new Fixed(rawBits - obj.rawBits)); }
 Fixed& Fixed::operator++(int)
 {
     Fixed *copy = new Fixed(*this);
@@ -81,12 +77,6 @@ Fixed& Fixed::operator++()
 {
     rawBits++;
     return (*this);
-}
-Fixed& Fixed::operator-(Fixed const &obj) const
-{
-    Fixed		*subtract = new Fixed();
-    subtract->rawBits = rawBits - obj.rawBits;
-    return (*subtract);
 }
 Fixed& Fixed::operator--(int)
 {

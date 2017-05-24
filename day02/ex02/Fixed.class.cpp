@@ -65,8 +65,8 @@ bool Fixed::operator>(Fixed const &obj) const { return (rawBits > obj.rawBits); 
 bool Fixed::operator>=(Fixed const &obj) const { return (rawBits >= obj.rawBits); }
 Fixed& Fixed::operator*(Fixed const &obj) const { return (*new Fixed(toFloat() * obj.toFloat())); }
 Fixed& Fixed::operator/(Fixed const &obj) const { return (*new Fixed(toFloat() / obj.toFloat())); }
-Fixed& Fixed::operator+(Fixed const &obj) const { return (*new Fixed(rawBits + obj.rawBits)); }
-Fixed& Fixed::operator-(Fixed const &obj) const { return (*new Fixed(rawBits - obj.rawBits)); }
+Fixed& Fixed::operator+(Fixed const &obj) const { return (*new Fixed(toFloat() + obj.toFloat())); }
+Fixed& Fixed::operator-(Fixed const &obj) const { return (*new Fixed(toFloat() - obj.toFloat())); }
 Fixed& Fixed::operator++(int)
 {
     Fixed *copy = new Fixed(*this);

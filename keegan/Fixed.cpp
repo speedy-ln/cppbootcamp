@@ -69,12 +69,12 @@ bool Fixed::operator!=(Fixed const & rhs)
 
 Fixed & Fixed::operator+(Fixed const & rhs)
 {
-    return *new Fixed(rhs.getRawBits() + this->value);
+    return *new Fixed(rhs.toFloat() + toFloat());
 }
 
 Fixed & Fixed::operator-(Fixed const & rhs)
 {
-    return *new Fixed(rhs.getRawBits() - this->value);
+    return *new Fixed(rhs.toFloat() - toFloat());
 }
 
 Fixed & Fixed::operator*(Fixed const & rhs)

@@ -21,8 +21,8 @@ ZombieHorde::ZombieHorde(int N)
     zombie = new Zombie[N];
     num_zombies = N;
     for (int i = 0; i < N; ++i) {
-        zombie[i].type = "Runner";
-        zombie[i].name = randomName();
+        zombie[i].setType("Runner");;
+        zombie[i].setName(randomName());
     }
 }
 

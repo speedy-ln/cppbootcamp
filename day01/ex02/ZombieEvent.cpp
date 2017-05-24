@@ -12,8 +12,8 @@ ZombieEvent::~ZombieEvent()
 
 Zombie*  ZombieEvent::newZombie(std::string name) {
     Zombie *zombie = new Zombie();
-    zombie->name = name;
-    zombie->type = this->ZombieType;
+    zombie->setName(name);
+    zombie->setType(this->ZombieType);
     return zombie;
 }
 

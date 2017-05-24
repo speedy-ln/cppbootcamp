@@ -29,8 +29,8 @@ int         main()
 {
     randomChump();
     Zombie zombie = Zombie();
-    zombie.name = randomName();
-    zombie.type = "Dry";
+    zombie.setName(randomName());
+    zombie.setType("Dry");
     zombie.announce();
     return (0);
 }

@@ -3,9 +3,11 @@
 void	ponyOnTheHeap()
 {
     Pony*   pony = new Pony();
+    std::string str;
     std::cout << "You see a cute pony... Give it a name: " ;
-    std::cin >> pony->name;
-    std::cout << "Your pony " << pony->name << " is sick" << std::endl;
+    std::cin >> str;
+    pony->setName(str);
+    std::cout << "Your pony " << pony->getName() << " is sick" << std::endl;
     delete pony;
     std::cout << std::endl;
 }
@@ -13,9 +15,11 @@ void	ponyOnTheHeap()
 void	ponyOnTheStack()
 {
     Pony pony = Pony();
+    std::string str;
     std::cout << "You see a cute pony... Give it a name: " ;
-    std::cin >> pony.name;
-    std::cout << "Your pony " << pony.name << " is sick" << std::endl;
+    std::cin >> str;
+    pony.setName(str);
+    std::cout << "Your pony " << pony.getName() << " is sick" << std::endl;
 }
 
 int		main()

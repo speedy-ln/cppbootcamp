@@ -10,7 +10,9 @@ class Brain
 public:
     std::string identify() const;
     Brain();
-    mutable std::string address;
+
+private:
+    std::string address;
 };
 
 #endif

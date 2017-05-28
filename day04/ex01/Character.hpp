@@ -20,6 +20,7 @@ public:
     AWeapon const       *getWeapon() const;
 
 private:
+    Character();
     std::string   _name;
     int                 _ap;
     AWeapon             *_weapon;

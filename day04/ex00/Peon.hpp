@@ -14,6 +14,9 @@ public:
     Peon    &operator=(Peon const &copy);
 
     void    getPolymorphed(void) const;
+
+private:
+    Peon();
 };
 
 #endif

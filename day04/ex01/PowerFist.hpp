@@ -15,8 +15,6 @@ public:
 
 private:
     std::string _name;
-//    int         _apcost;
-//    int         _damage;
 };
 
 #endif

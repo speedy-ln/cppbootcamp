@@ -19,6 +19,7 @@ public:
 
 
 private:
+    Sorcerer();
     std::string _name;
     std::string _title;
 };

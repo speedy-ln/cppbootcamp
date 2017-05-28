@@ -15,6 +15,9 @@ public:
     std::string getName() const;
     virtual void    getPolymorphed() const;
 
+private:
+    Victim();
+
 protected:
     std::string _name;
 };

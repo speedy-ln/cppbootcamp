@@ -3,6 +3,7 @@
 #include "modules/OSInfoModule.hpp"
 #include "modules/TimeModule.hpp"
 #include "modules/CPUModule.hpp"
+#include "modules/RAMModule.hpp"
 #include <memory>
 
 int main()
@@ -23,6 +24,9 @@ int main()
     std::cout << "module name: " << cpumodule->getModuleName() << std::endl;
     std::cout << "module value: " << cpumodule->getModuleValue() << std::endl;
 
+    module::RAMModule *rammodule = new module::RAMModule("RAM");
+    std::cout << "module name: " << rammodule->getModuleName() << std::endl;
+    std::cout << "module value: " << rammodule->getModuleValue() << std::endl;
 
     return 0;
 }

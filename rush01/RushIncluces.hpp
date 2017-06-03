@@ -16,6 +16,10 @@
 #include <mach/vm_map.h>
 #include "rushTemplates.hpp"
 
-
+//#import <Foundation/Foundation.h>
+#include <sys/sysctl.h>
+#include <netinet/in.h>
+#include <net/if.h>
+#include <net/route.h>
 
 #endif

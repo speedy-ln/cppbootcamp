@@ -4,6 +4,7 @@
 #include "modules/TimeModule.hpp"
 #include "modules/CPUModule.hpp"
 #include "modules/RAMModule.hpp"
+#include "modules/NetworkModule.hpp"
 #include <memory>
 
 int main()
@@ -27,6 +28,10 @@ int main()
     module::RAMModule *rammodule = new module::RAMModule("RAM");
     std::cout << "module name: " << rammodule->getModuleName() << std::endl;
     std::cout << "module value: " << rammodule->getModuleValue() << std::endl;
+
+    module::NetworkModule *networkmodule = new module::NetworkModule("Network");
+    std::cout << "module name: " << networkmodule->getModuleName() << std::endl;
+    std::cout << "module value: " << networkmodule->getModuleValue() << std::endl;
 
     return 0;
 }

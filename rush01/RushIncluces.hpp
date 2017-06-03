@@ -22,4 +22,6 @@
 #include <net/if.h>
 #include <net/route.h>
 
+#include <ncurses.h>
+
 #endif

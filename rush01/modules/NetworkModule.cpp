@@ -33,8 +33,8 @@ namespace module
                 totalobytes += if2m->ifm_data.ifi_obytes;
             }
         }
-        _moduleValue[0] = templates::tostr(totalibytes/1048576);
-        _moduleValue[1] = templates::tostr(totalobytes/1048576);
+        _moduleValue[0] = "Data received: " + templates::tostr(totalibytes/1048576) + "MB";
+        _moduleValue[1] = "Data sent: " + templates::tostr(totalobytes/1048576) + "MB";
     }
 
     std::string NetworkModule::getModuleValue()

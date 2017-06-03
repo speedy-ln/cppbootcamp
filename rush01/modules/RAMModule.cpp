@@ -13,7 +13,7 @@ namespace module
     std::vector<std::string> RAMModule::memString()
     {
         int64_t total_mem;
-        int64_t used_mem;
+        int64_t used_mem = 0;
         int64_t unused_mem;
         vm_size_t page_size;
         mach_port_t mach_port;
@@ -41,8 +41,8 @@ namespace module
         used_mem /= 1024;
         total_mem /= 1024;
 
-        str[0] = templates::tostr((used_mem/1024));
-        str[1] = templates::tostr(total_mem/1024);
+        str[0] = "Used: " + templates::tostr((used_mem/1024)) + "MB";
+        str[1] = "Total:  " + templates::tostr(total_mem/1024) + "MB";
         return str;
     }
 

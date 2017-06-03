@@ -20,7 +20,7 @@ namespace module
         this->_moduleValue.resize(2);
         this->_moduleValue[0] = "Type: ";
         this->_moduleValue[0] += kernostype;
-        this->_moduleValue[1] = "Release: ";
+        this->_moduleValue[1] = "Release:  ";
         this->_moduleValue[1] += kernosrelease;
     }
 

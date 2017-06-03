@@ -72,10 +72,10 @@ namespace module
     void CPUModule::setModuleValue()
     {
         std::vector<float> cpu = cpuPercentage();
-        this->_moduleValue[2] = "user: " + templates::tostr(roundf(cpu[0])) + "%";
-        this->_moduleValue[3] = "system: " + templates::tostr(roundf(cpu[1])) + "%";
-        this->_moduleValue[4] = "idle: " + templates::tostr(roundf(cpu[3])) + "%";
-        this->_moduleValue[5] = "nice: " + templates::tostr(roundf(cpu[2])) + "%";
+        this->_moduleValue[1] = "user: " + templates::tostr(roundf(cpu[0])) + "%";
+        this->_moduleValue[2] = "system: " + templates::tostr(roundf(cpu[1])) + "%";
+        this->_moduleValue[3] = "idle: " + templates::tostr(roundf(cpu[3])) + "%";
+        this->_moduleValue[4] = "nice: " + templates::tostr(roundf(cpu[2])) + "%";
     }
 
     std::string CPUModule::getModuleValue()

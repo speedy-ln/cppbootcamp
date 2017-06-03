@@ -3,7 +3,7 @@
 
 #include "RushIncluces.hpp"
 
-namespace module
+namespace display
 {
     class IMonitorDisplay
     {
@@ -11,7 +11,7 @@ namespace module
         IMonitorDisplay();
         virtual ~IMonitorDisplay();
 
-
+        virtual int updateDisplay() = 0;
 
     private:
         IMonitorDisplay &operator=(IMonitorDisplay const &copy);

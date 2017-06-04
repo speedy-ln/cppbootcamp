@@ -5,12 +5,6 @@ namespace module
     HostnameModule::HostnameModule(std::string moduleName)
     {
         _moduleName = moduleName;
-        setModuleValue();
-    }
-    HostnameModule::~HostnameModule() {}
-
-    void HostnameModule::setModuleValue()
-    {
         char		buffer[100];
 
         buffer[0] = '\0';
@@ -21,6 +15,13 @@ namespace module
             this->_moduleValue.resize(1);
             this->_moduleValue[0] = buffer;
         }
+        setModuleValue();
+    }
+    HostnameModule::~HostnameModule() {}
+
+    void HostnameModule::setModuleValue()
+    {
+
     }
 
     std::string HostnameModule::getModuleValue()

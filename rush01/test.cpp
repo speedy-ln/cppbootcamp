@@ -9,9 +9,8 @@
 #include "displays/Line.hpp"
 #include <memory>
 
-int main()
+int main(int argc, char **argv)
 {
-
     std::vector<module::IMonitorModule*> modules;
 
     module::HostnameModule *hostname = new module::HostnameModule("Hostname");
@@ -27,51 +26,65 @@ int main()
     modules.push_back(rammodule);
     modules.push_back(networkmodule);
 
-    display::text::Window *text = new display::text::Window();
-    text->setModules(modules);
-//    display::text::Line line(text->getWidth());
-
-//    line.setCustom("System Monitor");
-    int		key;
-    while (true)
+    if (argc > 1)
     {
-        key = getch();
-        clear();
-        refresh();
-
-        text->updateDisplay();
-//        printw(line.top.c_str());
-//        printw(line.custom.c_str());
-//        printw(line.blank.c_str());
-//        printw(line.filler.c_str());
-//        printw(line.filler.c_str());
-//        printw(line.filler.c_str());
-//        printw(line.top.c_str());
-        if (key == 113 || key == 27)
-            break;
-//        usleep(1000000/3);
+        if(strncmp(argv[0], "test", 3)) {}
     }
 
-    delete text;
+    std::string pick = "";
+    do {
+        std::cout << "graphic interface or terminal?" << std::endl;
+        std::cin >> pick;
+    } while(strcmp(pick.c_str(), "graphic") != 0 && strcmp(pick.c_str(), "terminal") != 0);
 
-//    std::cout << "module name: " << hostname->getModuleName() << std::endl;
-//    std::cout << "module value: " << hostname->getModuleValue() << std::endl;
-//
-//
-//    std::cout << "module name: " << osinfo->getModuleName() << std::endl;
-//    std::cout << "module value: " << osinfo->getModuleValue() << std::endl;
-//
-//    std::cout << "module name: " << timemodule->getModuleName() << std::endl;
-//    std::cout << "module value: " << timemodule->getModuleValue() << std::endl;
-//
-//    std::cout << "module name: " << cpumodule->getModuleName() << std::endl;
-//    std::cout << "module value: " << cpumodule->getModuleValue() << std::endl;
-//
-//    std::cout << "module name: " << rammodule->getModuleName() << std::endl;
-//    std::cout << "module value: " << rammodule->getModuleValue() << std::endl;
-//
-//    std::cout << "module name: " << networkmodule->getModuleName() << std::endl;
-//    std::cout << "module value: " << networkmodule->getModuleValue() << std::endl;
+
+    if (strcmp(pick.c_str(), "graphic") == 0)
+    {
+        std::vector<module::IMonitorModule*>::iterator it, end;
+        display::graphics::Window *graph = new display::graphics::Window();
+        graph->setModules(modules);
+        al_start_timer(graph->timer);
+        while(1)
+        {
+            al_wait_for_event(graph->event_queue, &graph->ev);
+            if(graph->ev.type == ALLEGRO_EVENT_TIMER) {
+                graph->_redraw = true;
+            }
+            if(graph->ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+                break;
+            }
+
+            if(graph->_redraw && al_is_event_queue_empty(graph->event_queue)) {
+                graph->_redraw = false;
+                for(it = modules.begin(); it != modules.end(); it++)
+                    (*it)->setModuleValue();
+                graph->updateDisplay();
+            }
+        }
+        delete graph;
+    }
+    else if (strcmp(pick.c_str(), "terminal") == 0)
+    {
+        display::text::Window *text = new display::text::Window();
+        text->setModules(modules);
+
+        std::vector<module::IMonitorModule*>::iterator it, end;
+
+        int		key ;
+        while (true)
+        {
+            nodelay(stdscr, true);
+            key = getch();
+            text->updateDisplay();
+            sleep(1);
+            if (key == 113 || key == 27)
+                break;
+            for(it = modules.begin(); it != modules.end(); it++)
+                (*it)->setModuleValue();
+        }
+
+        delete text;
+    }
 
     return 0;
 }

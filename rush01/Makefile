@@ -11,10 +11,12 @@ INCLUDES = displays/*.cpp \
 
 FLAGS = -lncurses
 
+FLGS = -I/usr/local/include -L/usr/local/lib -lallegro -lallegro_main -lallegro_font -lallegro_ttf -lncurses
+
 OBJ = $(INCLUDES:.cpp=.o)
 
 $(NAME):
-	$(COMPILE) -o $(NAME) $(SRC) $(INCLUDES) $(FLAGS)
+	$(COMPILE) -o $(NAME) $(SRC) $(INCLUDES) $(FLGS)
 
 all: $(NAME)
 

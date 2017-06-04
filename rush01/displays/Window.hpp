@@ -25,7 +25,35 @@ namespace display
 
             int _width;
             std::vector<module::IMonitorModule*>    _modules;
-//            std::vector<display::text::Line>        _lines;
+        };
+    }
+
+    namespace graphics
+    {
+        class Window : public IMonitorDisplay
+        {
+        public:
+            Window();
+            ~Window();
+
+            int     updateDisplay();
+            void    setModules(std::vector<module::IMonitorModule*> mods);
+            std::vector<module::IMonitorModule*>    getModules();
+
+            ALLEGRO_EVENT       ev;
+            ALLEGRO_TIMEOUT     timeout;
+            ALLEGRO_EVENT_QUEUE *event_queue;
+            ALLEGRO_TIMER       *timer;
+            float         FPS;
+            bool                _redraw;
+
+        private:
+            Window(Window const &copy);
+            Window &operator=(Window const &copy);
+
+            ALLEGRO_DISPLAY     *display;
+            ALLEGRO_FONT        *font;
+            std::vector<module::IMonitorModule*>    _modules;
         };
     }
 }
